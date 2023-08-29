@@ -1,0 +1,56 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;  
+  left: 50%;
+  transform: translate(-50%, -50%);  
+}
+
+
+
+//MEDIA QUERY MANAGER
+/*
+0   - 600px:   Phone
+600 - 900px:   Tablet Portrait
+900 - 1200px:  Tablet Landscape
+[1200 - 1800]  is where our normal styles apply
+1800px + :     Big Desktop
+
+@mixin respond-phone {
+  @media (max-width: 600px) { @content };
+}
+
+$breakpoint argument choices:
+- phone
+- tablet-portrait
+- tablet-landscape
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+
+WE'LL CALL A MIXIN NAMED respond & PASS AN ARGUMENT CALLED $breakpoint IN IT.
+THEN if CONDITIONS WILL BE CHECKED & IF ITS TRUE THEN CONDITION WILL BE APPLIED.
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.50em) { @content };   //600px/16 = 37.50em
+  }
+  @if $breakpoint == tablet-portrait {
+    @media only screen and (max-width: 56.25em) { @content };   //900px/16 = 56.25em
+  }
+  @if $breakpoint == tablet-landscape {
+    @media only screen and (max-width: 75.00em) { @content };   //1200px/16 = 75em
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) { @content };   //1800px/16 = 112.5em
+  }
+}

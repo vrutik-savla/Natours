@@ -1,0 +1,52 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  // This defines what 1 rem is
+  font-size: 62.5%;
+  /* 10px / 16px = 0.625 = 62.5% */
+  /* Default root font size is now NOT 16px but its 10px */
+
+  // @include respond(phone) {
+  //   font-size: 50%;
+  // }
+  
+  @include respond(tablet-landscape) { //width <=1200px?
+    font-size: 56.25%; //1rem = 9px(NOT 10px), 9/16 = 56.25%
+  }
+  
+  @include respond(tablet-portrait) { //width <=900px?
+    font-size: 50%; //1rem = 8px(NOT 10px), 8/16 = 50%
+  }
+  //If 700px then both will apply 1200px & 900px, but on screen the last declaration one will be applied i.e 900px
+  //ORDER MATTERS...!!!!!
+  
+  /*
+  @include respond(phone) { //width <=600px?
+    font-size: 30%; //1rem = 4.8px
+  }
+  */
+  
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem = 12px, 12/16 = 75%
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tablet-portrait) {
+    padding: 0;
+  }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
